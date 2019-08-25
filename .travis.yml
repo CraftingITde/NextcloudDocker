@@ -3,4 +3,4 @@ services:
 - docker
 
 script:
-- docker build -t Nextcloud /Container/Nextcloud/
+- docker build -t nextcloud /Container/Nextcloud/
