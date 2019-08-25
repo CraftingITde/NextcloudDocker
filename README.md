@@ -1,4 +1,5 @@
-# NextcloudDocker
+# NextcloudDocker [![Build Status](https://travis-ci.com/CraftingITde/NextcloudDocker.svg?branch=master)](https://travis-ci.com/CraftingITde/NextcloudDocker)
+
 Docker Container Collection for Nextcloud
 
 # Container in this Repository
