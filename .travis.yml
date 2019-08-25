@@ -1,6 +1,16 @@
 sudo: required
+language: python
 services:
 - docker
 
 script:
 - docker build -t nextcloud Container/Nextcloud/
+- docker build -t nextcloud-cron Container/NextcloudCron/
+- docker build -t nextcloud-mariadb Container/MariaDB/
+- docker build -t nextcloud-elasticsearch Container/Elasticsearch/
+
+deploy:
+  provider: script
+  script: bash docker_push.sh
+  on:
+    branch: master
