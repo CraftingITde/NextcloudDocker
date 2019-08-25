@@ -14,3 +14,9 @@ deploy:
   script: bash docker_push_dev.sh
   on:
     branch: master
+
+deploy:
+  provider: script
+  script: bash docker_push_tag.sh
+  on:
+    tags: true
