@@ -10,13 +10,12 @@ script:
 - docker build -t nextcloud-elasticsearch Container/Elasticsearch/
 
 deploy:
-  provider: script
-  script: bash docker_push_dev.sh
-  on:
-    branch: master
+  - provider: script
+    script: bash docker_push_dev.sh
+    on:
+      branch: master
 
-deploy:
-  provider: script
-  script: bash docker_push_tag.sh
-  on:
-    tags: true
+  - provider: script
+    script: bash docker_push_tag.sh
+    on:
+      tags: true
