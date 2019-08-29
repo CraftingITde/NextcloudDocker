@@ -13,3 +13,10 @@ RUN { \
 RUN apt-get update && apt-get install -y --no-install-recommends \
     smbclient \
   && rm -rf /var/lib/apt/lists/* 
+
+
+
+COPY entrypoint_modUser.sh /entrypoint_modUser.sh
+RUN chmod +x /entrypoint_modUser.sh
+
+ENTRYPOINT ["/bin/bash", "-c", "/entrypointModUser.sh && /entrypoint.sh apache2-foreground"]
