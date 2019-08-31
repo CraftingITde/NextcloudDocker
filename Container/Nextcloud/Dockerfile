@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 
-COPY entrypoint_modUser.sh /entrypoint_modUser.sh
-RUN chmod +x /entrypoint_modUser.sh
+COPY entrypoint_modUser.sh /entrypointmodUser.sh
+RUN chmod +x /entrypointmodUser.sh
 
 ENTRYPOINT ["/bin/bash", "-c", "/entrypointModUser.sh && /entrypoint.sh apache2-foreground"]
