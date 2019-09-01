@@ -10,12 +10,24 @@ Extends the default configuration with better PHP settings and implements the op
 docker pull craftingit/nextcloud:latest
 ```
 
+__Parameters__:
+- `USER_ID` Set the UserID of www-user.
+- `GROUP_ID` Set the GroupID of www-user.
+
 ## Nextcloud-Cron [![](https://badgen.net/badge/docker/Docker?icon&label=View%20on)](https://hub.docker.com/r/craftingit/nextcloud-cron)
 Adds [Teseract OCR](https://github.com/tesseract-ocr/tesseract) to be implemented into cron job.
 
 ```sh
 docker pull craftingit/nextcloudcron:latest
 ```
+
+__Parameters__:
+- `CRON` If set the cron command will run every 15 minutes. 
+- `FULLTEXT` If set the Fulltext search index rebuilds every night. 
+- `PREVIEW` If set image Previews will be generated every 15 minutes. 
+- `USER_ID` Set the UserID of www-user.
+- `GROUP_ID` Set the GroupID of www-user.
+
 
 ### Nextcloud-Elasticsearch [![](https://badgen.net/badge/docker/Docker?icon&label=View%20on)](https://hub.docker.com/r/craftingit/nextcloud-elasticsearch)
 Extended with the [ingest-attachment](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html) plugin.
