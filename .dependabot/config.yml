@@ -1,0 +1,18 @@
+version: 1
+
+update_configs:
+  - package_manager: "docker"
+    directory: "/Container/Nextcloud"
+    update_schedule: "weekly"
+  - package_manager: "docker"
+    directory: "/Container/NextcloudCron"
+    update_schedule: "weekly"
+  - package_manager: "docker"
+    directory: "/Container/javamaven"
+    update_schedule: "weekly"
+  - package_manager: "docker"
+    directory: "/Container/MariaDB"
+    update_schedule: "weekly"
+  - package_manager: "docker"
+    directory: "/Container/Elasticsearch"
+    update_schedule: "weekly"
