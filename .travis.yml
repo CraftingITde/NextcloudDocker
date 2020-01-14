@@ -1,5 +1,4 @@
-sudo: required
-language: bash
+language: shell
 services:
 - docker
 

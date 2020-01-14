@@ -4,7 +4,7 @@
 Docker Container Collection for Nextcloud
 
 # Container in this Repository
-## Nextcloud [![](https://badgen.net/badge/docker/Docker?icon&label=View%20on)](https://hub.docker.com/r/craftingit/nextcloud) ![](https://badgen.net/docker/pulls/craftingit/nextcloud?icon=docker&label=pulls)![](https://badgen.net/docker/stars/craftingit/nextcloud?icon=docker&label=stars)
+## Nextcloud [![](https://badgen.net/badge/docker/Docker?icon&label=View%20on)](https://hub.docker.com/r/craftingit/nextcloud) ![](https://badgen.net/docker/pulls/craftingit/nextcloud?icon=docker&label=pulls) ![](https://badgen.net/docker/stars/craftingit/nextcloud?icon=docker&label=stars) ![](https://badgen.net/docker/size/craftingit/nextcloud?icon=docker)
 Extends the default configuration with better PHP settings and implements the option to use Samba Share.
 
 ```sh
@@ -15,7 +15,7 @@ __Parameters__:
 - `USER_ID` Set the UserID of www-user.
 - `GROUP_ID` Set the GroupID of www-user.
 
-## Nextcloud-Cron [![](https://badgen.net/badge/docker/Docker?icon&label=View%20on)](https://hub.docker.com/r/craftingit/nextcloud-cron)![](https://badgen.net/docker/pulls/craftingit/nextcloud-cron?icon=docker&label=pulls)![](https://badgen.net/docker/stars/craftingit/nextcloud-cron?icon=docker&label=stars)
+## Nextcloud-Cron [![](https://badgen.net/badge/docker/Docker?icon&label=View%20on)](https://hub.docker.com/r/craftingit/nextcloud-cron) ![](https://badgen.net/docker/pulls/craftingit/nextcloud-cron?icon=docker&label=pulls) ![](https://badgen.net/docker/stars/craftingit/nextcloud-cron?icon=docker&label=stars) ![](https://badgen.net/docker/size/craftingit/nextcloud-cron?icon=docker)
 Adds [Teseract OCR](https://github.com/tesseract-ocr/tesseract) to be implemented into cron job.
 
 ```sh
@@ -30,14 +30,14 @@ __Parameters__:
 - `GROUP_ID` Set the GroupID of www-user.
 
 
-### Nextcloud-Elasticsearch [![](https://badgen.net/badge/docker/Docker?icon&label=View%20on)](https://hub.docker.com/r/craftingit/nextcloud-elasticsearch)![](https://badgen.net/docker/pulls/craftingit/nextcloud-elasticsearch?icon=docker&label=pulls)![](https://badgen.net/docker/stars/craftingit/nextcloud-elasticsearch?icon=docker&label=stars)
+### Nextcloud-Elasticsearch [![](https://badgen.net/badge/docker/Docker?icon&label=View%20on)](https://hub.docker.com/r/craftingit/nextcloud-elasticsearch) ![](https://badgen.net/docker/pulls/craftingit/nextcloud-elasticsearch?icon=docker&label=pulls) ![](https://badgen.net/docker/stars/craftingit/nextcloud-elasticsearch?icon=docker&label=stars) ![](https://badgen.net/docker/size/craftingit/nextcloud-elasticsearch?icon=docker)
 Extended with the [ingest-attachment](https://www.elastic.co/guide/en/elasticsearch/plugins/current/ingest-attachment.html) plugin.
 
 ```sh
 docker pull craftingit/nextcloud-elasticsearch:latest
 ```
 
-## Nextcloud-MariaDB [![](https://badgen.net/badge/docker/Docker?icon&label=View%20on)](https://hub.docker.com/r/craftingit/nextcloud-mariadb)![](https://badgen.net/docker/pulls/craftingit/nextcloud-mariadb?icon=docker&label=pulls)![](https://badgen.net/docker/stars/craftingit/nextcloud-mariadb?icon=docker&label=stars)
+## Nextcloud-MariaDB [![](https://badgen.net/badge/docker/Docker?icon&label=View%20on)](https://hub.docker.com/r/craftingit/nextcloud-mariadb) ![](https://badgen.net/docker/pulls/craftingit/nextcloud-mariadb?icon=docker&label=pulls) ![](https://badgen.net/docker/stars/craftingit/nextcloud-mariadb?icon=docker&label=stars) ![](https://badgen.net/docker/stars/craftingit/nextcloud-elasticsearch?icon=docker&label=stars) ![](https://badgen.net/docker/size/craftingit/nextcloud-mariadb?icon=docker)
 Contains better settings to be used with Nextcloud.
 
 ```sh
