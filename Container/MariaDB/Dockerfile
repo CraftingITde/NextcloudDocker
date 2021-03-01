@@ -1,4 +1,4 @@
-FROM mariadb:10.5.8
+FROM mariadb:10.5.9
 LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
 
 RUN { \
