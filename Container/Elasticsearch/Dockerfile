@@ -1,4 +1,4 @@
-FROM docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+FROM docker.elastic.co/elasticsearch/elasticsearch:7.13.0
 
 LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
 
