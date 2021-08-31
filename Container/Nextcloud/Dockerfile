@@ -11,6 +11,7 @@ RUN { \
     echo 'memory_limit=1024M' > /usr/local/etc/php/conf.d/memory-limit.ini;
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    samba-common \
     smbclient \
   && rm -rf /var/lib/apt/lists/* 
 
