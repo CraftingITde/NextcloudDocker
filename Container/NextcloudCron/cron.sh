@@ -15,7 +15,7 @@ trap "break;exit" SIGHUP SIGINT SIGTERM
 run () {
   if ! [ -z ${CRON+x} ]; then
     echo $(date) - Running cron Started
-    su -s "/bin/bash" -c "/usr/local/bin/php /var/www/html/cron.php" www-data
+    su -s "/bin/bash" -c "PHP_MEMORY_LIMIT=512M php -f /var/www/html/cron.php" www-data
     echo $(date) - Running cron finished
   fi
   #Volltext update
@@ -24,7 +24,7 @@ run () {
     if [[ "$currenttime" > "23:00" ]] || [[ "$currenttime" < "03:00" ]]; then
       if [ -z ${FULLTEXTRUN+x} ]; then
         echo $(date) - Running fulltextsearch Started
-        su -s "/bin/bash" -c "php /var/www/html/occ fulltextsearch:index" www-data
+        su -s "/bin/bash" -c "PHP_MEMORY_LIMIT=512M php -f /var/www/html/occ fulltextsearch:index" www-data
         echo $(date) - Running fulltextsearch finished
         FULLTEXTRUN=1
       else
@@ -38,7 +38,7 @@ run () {
   #Image Previews
   if ! [ -z ${PREVIEW+x} ]; then
     echo $(date) - Running preview:pre-generate Started
-    su -s "/bin/bash" -c "php /var/www/html/occ preview:pre-generate" www-data
+    su -s "/bin/bash" -c "PHP_MEMORY_LIMIT=512M php -f /var/www/html/occ preview:pre-generate" www-data
     echo $(date) - Running preview:pre-generate finished
   fi
 }
