@@ -2,6 +2,7 @@ FROM nextcloud:20.0.12-fpm
 LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    sudo \
     tesseract-ocr \
     tesseract-ocr-deu \
     tesseract-ocr-eng \
