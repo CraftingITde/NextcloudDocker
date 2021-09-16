@@ -9,3 +9,5 @@ if [ ! -z "${GROUP_ID}" ]; then
     echo Group: $GROUP_ID 
     groupmod -g $GROUP_ID www-data
 fi
+
+sudo -u www-data /entrypoint.sh apache2-foreground
