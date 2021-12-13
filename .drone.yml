@@ -11,6 +11,7 @@ steps:
     password:
       from_secret: docker_password
     repo: craftingit/nextcloud
+    context: Container/Nextcloud/
     dockerfile: Container/Nextcloud/Dockerfile
     tags:
       - ${DRONE_TAG}
@@ -22,6 +23,7 @@ steps:
     password:
       from_secret: docker_password
     repo: craftingit/nextcloud-cron
+    context: Container/NextcloudCron/
     dockerfile: Container/NextcloudCron/Dockerfile
     tags:
       - ${DRONE_TAG}
@@ -33,6 +35,7 @@ steps:
     password:
       from_secret: docker_password
     repo: craftingit/nextcloud-elasticsearch
+    context: Container/NextcloudCron/
     dockerfile: Container/Elasticsearch/Dockerfile
     tags:
       - ${DRONE_TAG}
