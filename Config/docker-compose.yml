@@ -3,7 +3,7 @@ version: '2'
 services:
   # Nextcloud Database
   db:
-    image: craftingit/nextcloud-mariadb:dev
+    image: mariadb
     container_name: nextcloud_db
     restart: always
     volumes:

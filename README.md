@@ -36,10 +36,3 @@ Extended with the [ingest-attachment](https://www.elastic.co/guide/en/elasticsea
 ```sh
 docker pull craftingit/nextcloud-elasticsearch:latest
 ```
-
-## Nextcloud-MariaDB [![](https://badgen.net/badge/docker/Docker?icon&label=View%20on)](https://hub.docker.com/r/craftingit/nextcloud-mariadb) ![](https://badgen.net/docker/pulls/craftingit/nextcloud-mariadb?icon=docker&label=pulls) ![](https://badgen.net/docker/stars/craftingit/nextcloud-mariadb?icon=docker&label=stars) ![](https://badgen.net/docker/stars/craftingit/nextcloud-elasticsearch?icon=docker&label=stars) ![](https://badgen.net/docker/size/craftingit/nextcloud-mariadb?icon=docker)
-Contains better settings to be used with Nextcloud.
-
-```sh
-docker pull craftingit/nextcloud-mariadb:latest
-```
