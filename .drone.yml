@@ -13,8 +13,7 @@ steps:
     repo: craftingit/nextcloud
     context: Container/Nextcloud/
     dockerfile: Container/Nextcloud/Dockerfile
-    tags:
-      - ${DRONE_TAG}
+    auto_tag: true
 - name: NextcloudCron  
   image: plugins/docker
   settings:
@@ -25,8 +24,7 @@ steps:
     repo: craftingit/nextcloud-cron
     context: Container/NextcloudCron/
     dockerfile: Container/NextcloudCron/Dockerfile
-    tags:
-      - ${DRONE_TAG}
+    auto_tag: true
 - name: NextcloudElastic 
   image: plugins/docker
   settings:
@@ -37,5 +35,4 @@ steps:
     repo: craftingit/nextcloud-elasticsearch
     context: Container/NextcloudCron/
     dockerfile: Container/Elasticsearch/Dockerfile
-    tags:
-      - ${DRONE_TAG}
+    auto_tag: true
