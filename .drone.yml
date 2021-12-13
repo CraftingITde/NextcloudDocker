@@ -1,0 +1,38 @@
+kind: pipeline
+type: kubernetes
+name: foo
+
+steps:
+- name: Nextcloud  
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: craftingit/nextcloud
+    context: Container/Nextcloud/
+    tags:
+      - ${DRONE_TAG}
+- name: NextcloudCron  
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: craftingit/nextcloud-cron
+    context: Container/NextcloudCron/
+    tags:
+      - ${DRONE_TAG}
+- name: NextcloudCron  
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: craftingit/nextcloud-elasticsearch
+    context: Container/Elasticsearch/
+    tags:
+      - ${DRONE_TAG}
