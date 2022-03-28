@@ -1,4 +1,4 @@
-FROM nextcloud:23.0.0-apache 
+FROM nextcloud:23.0.3-apache 
 LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
 
 RUN { \
