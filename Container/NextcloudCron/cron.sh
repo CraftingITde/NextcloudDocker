@@ -48,7 +48,7 @@ if [ "$ONCE" == '1' ]; then
   run
 else 
   while /bin/true; do
-    sleep 15m
+    sleep 5m
     run
   done
 fi
