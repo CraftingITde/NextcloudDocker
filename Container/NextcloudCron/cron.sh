@@ -13,13 +13,13 @@ fi
 trap "break;exit" SIGHUP SIGINT SIGTERM
 
 run () {
-  if ! [ -z ${CRON+x} ]; then
+  if [ "$CRON" == '1' ]; then
     echo $(date) - Running cron Started
     su -s "/bin/bash" -c "/usr/local/bin/php /var/www/html/cron.php" www-data
     echo $(date) - Running cron finished
   fi
   #Volltext update
-  if ! [ -z ${FULLTEXT+x} ]; then
+  if [ "$FULLTEXT" == '1' ]; then
     currenttime=$(date +%H:%M)
     if [[ "$currenttime" > "23:00" ]] || [[ "$currenttime" < "03:00" ]]; then
       if [ -z ${FULLTEXTRUN+x} ]; then
@@ -36,14 +36,14 @@ run () {
     fi
   fi
   #Image Previews
-  if ! [ -z ${PREVIEW+x} ]; then
+  if [ "$PREVIEW" == '1' ]; then
     echo $(date) - Running preview:pre-generate Started
     su -s "/bin/bash" -c "php /var/www/html/occ preview:pre-generate" www-data
     echo $(date) - Running preview:pre-generate finished
   fi
 }
 
-if ! [ -z ${ONCE+x} ]; then
+if [ "$ONCE" == '1' ]; then
   echo $(date) - Running Once
   run
 else 
