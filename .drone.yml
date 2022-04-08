@@ -36,3 +36,35 @@ steps:
     context: Container/NextcloudCron/
     dockerfile: Container/Elasticsearch/Dockerfile
     auto_tag: true
+
+trigger:
+  event:
+  - push
+  - pull_request
+  - tag
+
+---
+kind: pipeline
+type: kubernetes
+name: kube-linter-docker-updates
+
+steps:
+- name: update dockerfile
+  image: craftingit/ci-tools-docker
+  commands:
+    - bash .ci/updater.sh
+    
+- name: push commit
+  image: appleboy/drone-git-push
+  settings:
+    remote_name: originssh
+    remote: git@github.com:CraftingITde/NextcloudDocker.git
+    ssh_key:
+      from_secret: GITHUB_SSH_KEY
+    branch: master
+    local_ref: master
+    followtags: true
+
+trigger:
+  event:
+  - cron
