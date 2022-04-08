@@ -42,7 +42,7 @@ trigger:
   - push
   - pull_request
   - tag
-  
+
 ---
 kind: pipeline
 type: kubernetes
@@ -58,7 +58,7 @@ steps:
   image: appleboy/drone-git-push
   settings:
     remote_name: originssh
-    remote: git@github.com:CraftingITde/healthchecks-docker.git
+    remote: git@github.com:CraftingITde/NextcloudDocker.git
     ssh_key:
       from_secret: GITHUB_SSH_KEY
     branch: master
