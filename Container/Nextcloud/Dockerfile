@@ -12,6 +12,7 @@ RUN { \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     smbclient \
+    libmagickcore-6.q16-6-extra \
   && rm -rf /var/lib/apt/lists/* 
 
 
