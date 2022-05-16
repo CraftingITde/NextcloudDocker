@@ -1,5 +1,5 @@
 #!/bin/zsh
-export CURENT_MAJOR=23
+export CURENT_MAJOR=24
 
 curl -s 'https://api.github.com/repos/nextcloud/server/tags?per_page=100' | jq -r '.[].name' | grep -v RC | grep -v rc | grep -v beta | grep $CURENT_MAJOR. | sort -V  >> remoteVersions
 sed --in-place "s/v//g" remoteVersions
