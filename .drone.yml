@@ -61,8 +61,8 @@ steps:
     remote: git@github.com:CraftingITde/NextcloudDocker.git
     ssh_key:
       from_secret: GITHUB_SSH_KEY
-    branch: master
-    local_ref: master
+    branch: v23
+    local_ref: v23
     followtags: true
 
 trigger:
