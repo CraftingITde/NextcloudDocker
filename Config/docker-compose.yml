@@ -3,16 +3,15 @@ version: '2'
 services:
   # Nextcloud Database
   db:
-    image: mariadb
+    image: postgres:15.1-alpine
     container_name: nextcloud_db
     restart: always
     volumes:
       - ./db:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=nextcloud
-      - MYSQL_PASSWORD=nextcloud
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+      - POSTGRES_PASSWORD=nextcloud
+      - POSTGRES_DB=nextcloud
+      - POSTGRES_USER=nextcloud
     networks:
       - nextcloudData
   # Nextcloud Database Admin
