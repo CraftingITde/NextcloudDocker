@@ -1,4 +1,4 @@
-# NextcloudDocker [![Build Status](https://travis-ci.com/CraftingITde/NextcloudDocker.svg?branch=master)](https://travis-ci.com/CraftingITde/NextcloudDocker) ![](https://badgen.net/github/release/craftingitde/NextcloudDocker/stable)
+# NextcloudDocker [![Build Status](https://drone.craftingit.de/api/badges/CraftingITde/NextcloudDocker/status.svg)](https://drone.craftingit.de/CraftingITde/NextcloudDocker)![](https://badgen.net/github/release/craftingitde/NextcloudDocker/stable)
 
 
 Docker Container Collection for Nextcloud
