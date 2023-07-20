@@ -39,6 +39,7 @@ run () {
   if [ "$PREVIEW" == '1' ]; then
     echo $(date) - Running preview:pre-generate Started
     su -s "/bin/bash" -c "php /var/www/html/occ preview:pre-generate" www-data
+    su -s "/bin/bash" -c "php /var/www/html/occ preview:repair -b" www-data
     echo $(date) - Running preview:pre-generate finished
   fi
 }

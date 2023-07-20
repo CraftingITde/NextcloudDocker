@@ -36,3 +36,9 @@ Extended with the [ingest-attachment](https://www.elastic.co/guide/en/elasticsea
 ```sh
 docker pull craftingit/nextcloud-elasticsearch:latest
 ```
+
+## Run Update
+
+```sh
+sudo -u www-data PHP_MEMORY_LIMIT=2048M php -f  /var/www/html/occ upgrade
+```
