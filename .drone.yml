@@ -25,17 +25,6 @@ steps:
     context: Container/NextcloudCron/
     dockerfile: Container/NextcloudCron/Dockerfile
     auto_tag: true
-- name: NextcloudElastic 
-  image: plugins/docker
-  settings:
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-    repo: craftingit/nextcloud-elasticsearch
-    context: Container/NextcloudCron/
-    dockerfile: Container/Elasticsearch/Dockerfile
-    auto_tag: true
 
 trigger:
   event:

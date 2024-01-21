@@ -31,7 +31,6 @@ services:
       - 8080:80
     links:
       - db
-      - elasticsearch
     volumes:
       - ./html:/var/www/html
     restart: always
@@ -49,7 +48,6 @@ services:
       - PREVIEW=1
     links:
       - db
-      - elasticsearch
     volumes:
       - ./html:/var/www/html
     restart: always
@@ -72,19 +70,6 @@ services:
   #  volumes:
   #    - ./document_data:/var/www/onlyoffice/Data
   #    - ./document_log:/var/log/onlyoffice
-  # elasticsearch
-  elasticsearch:
-    image: craftingit/nextcloud-elasticsearch:dev
-    container_name: nextcloud_elasticsearch
-    restart: always
-    environment:
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
-      - "discovery.type=single-node"
-    volumes:
-      - ./esdata:/usr/share/elasticsearch/data
-    networks:
-      - nextcloudFullText
-
 
 networks:
   nextcloudData:
