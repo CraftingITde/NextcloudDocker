@@ -1,7 +1,7 @@
 FROM nextcloud:26.0.10-fpm
 LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
 
-RUN apt-get update && apt-get upgrade -y apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
     smbclient \
     tesseract-ocr \
     tesseract-ocr-deu \
