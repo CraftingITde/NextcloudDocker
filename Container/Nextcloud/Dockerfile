@@ -1,9 +1,11 @@
-FROM nextcloud:26.0.9-apache 
+FROM nextcloud:26.0.10-apache 
 LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
     smbclient \
     libmagickcore-6.q16-6-extra \
+    sudo \
+    nano \
   && rm -rf /var/lib/apt/lists/* 
 
 COPY entrypointModUser.sh /entrypointModUser.sh
