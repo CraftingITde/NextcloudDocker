@@ -1,0 +1,20 @@
+name: update-container
+on:
+  schedule:
+    - cron: "30 6 * * 1"
+
+jobs:
+  update-dockerfile:
+    runs-on: ubuntu-latest
+    container: craftingit/ci-tools-docker
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Update Dockerfile
+      run: bash .ci/updater.sh
+    
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.8.0
+      with:
+        branch: ${{ github.ref }}
