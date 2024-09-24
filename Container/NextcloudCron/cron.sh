@@ -71,6 +71,11 @@ run () {
   fi
 }
 
+# Run some useful occ commands
+su -s "/bin/bash" -c "php /var/www/html/occ upgrade" www-data
+su -s "/bin/bash" -c "php /var/www/html/occ maintenance:repair --include-expensive" www-data
+su -s "/bin/bash" -c "php /var/www/html/occ db:add-missing-indices" www-data
+
 if [ "$ONCE" == '1' ]; then
   echo $(date) - Running Once
   run
