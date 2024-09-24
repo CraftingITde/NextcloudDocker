@@ -1,4 +1,4 @@
-FROM nextcloud:29.0.7-apache 
+FROM nextcloud:30.0.0-apache 
 LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
