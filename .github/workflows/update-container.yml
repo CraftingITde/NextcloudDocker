@@ -6,10 +6,15 @@ on:
 jobs:
   update-dockerfile:
     runs-on: ubuntu-latest
-    container: craftingit/ci-tools-docker
+    container: craftingit/ci-tools-docker:0.0.1
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4 
+      with:
+        fetch-depth: 0
+
+    - name: Fix permissions
+      run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
     - name: Update Dockerfile
       run: bash .ci/updater.sh
@@ -17,4 +22,5 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@v0.8.0
       with:
+        github_token: ${{ secrets.PAT_BOT }}
         branch: ${{ github.ref }}
