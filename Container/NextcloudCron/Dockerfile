@@ -13,4 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY cron.sh /cron.sh
 RUN chmod +x /cron.sh
 
+COPY ci.custom.config.php /usr/src/nextcloud/config/ci.custom.config.php
+
 ENTRYPOINT ["/cron.sh"]

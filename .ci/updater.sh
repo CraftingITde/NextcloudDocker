@@ -27,6 +27,8 @@ echo "  Repo:          ${REPO_ADRESS}"
 
 sed -i "s/FROM nextcloud:${CURRENT_VERSION}-apache/FROM nextcloud:${LATEST_VERSION}-apache/g" Container/Nextcloud/Dockerfile
 sed -i "s/FROM nextcloud:${CURRENT_VERSION}-fpm/FROM nextcloud:${LATEST_VERSION}-fpm/g" Container/NextcloudCron/Dockerfile
+sed -i "s/FROM nextcloud:${CURRENT_VERSION}-fpm/FROM nextcloud:${LATEST_VERSION}-fpm/g" Container/NextcloudNginx/Dockerfile
+sed -i "s/FROM nextcloud:${CURRENT_VERSION}-fpm/FROM nextcloud:${LATEST_VERSION}-fpm/g" Container/NextcloudFPM/Dockerfile
 
 git diff --exit-code . > /dev/null
 
@@ -40,6 +42,8 @@ else
     git config user.email "craftingitbot@craftingit.de"
     git add Container/Nextcloud/Dockerfile
     git add Container/NextcloudCron/Dockerfile
+    git add Container/NextcloudNginx/Dockerfile
+    git add Container/NextcloudFPM/Dockerfile
 	git commit --message "Bump to latest version ${VERSION}"
 fi
 

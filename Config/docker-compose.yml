@@ -1,61 +1,169 @@
-version: '2'
-
 services:
   # Nextcloud Database
   db:
     image: postgres:15.1-alpine
-    container_name: nextcloud_db
     restart: always
     volumes:
-      - ./db:/var/lib/mysql
+      - ./db/data:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=nextcloud
       - POSTGRES_DB=nextcloud
       - POSTGRES_USER=nextcloud
     networks:
       - nextcloudData
+
   # Nextcloud Database Admin
   db_admin:
-    container_name: nextcloud_db_admin
     image: adminer
     restart: always
     ports:
       - 8086:8080 
     networks:
-      - nextcloudData 
-  # Nextcloud App
-  app:  
-    image: craftingit/nextcloud:dev
-    container_name: nextcloud_app
+      - nextcloudData
+  
+  # Redis for caching and transactional locking
+  redis:
+    image: redis:alpine
+    restart: always
+    command: redis-server --requirepass nextcloud
+    networks:
+      - nextcloudData
+
+  # NGINX web server
+  web:
+    image: craftingit/nextcloud-nginx:latest
+    build:
+      context: ../Container/NextcloudNginx
+      dockerfile: Dockerfile
+    restart: always
     ports:
       - 8080:80
-    links:
-      - db
     volumes:
-      - ./html:/var/www/html
-    restart: always
+      - ./custom_apps:/var/www/html/custom_apps:ro
+    depends_on:
+      - app
+      - notify_push
     networks:
       - nextcloudData
       - nextcloudFullText
       - nextcloudOffice
+  
+  # Nextcloud App (FPM)
+  app:
+    image: craftingit/nextcloud-fpm:latest
+    build:
+      context: ../Container/NextcloudFPM
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./data:/data
+      - ./custom_apps:/var/www/html/custom_apps
+    depends_on:
+      - db
+      - redis
+    networks:
+      - nextcloudData
+      - nextcloudFullText
+      - nextcloudOffice
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_HOST_PASSWORD=nextcloud
+      - PHP_MEMORY_LIMIT=1G
+      - PHP_UPLOAD_LIMIT=16G
+      - POSTGRES_DB=nextcloud
+      - POSTGRES_USER=nextcloud
+      - POSTGRES_PASSWORD=nextcloud
+      - POSTGRES_HOST=db
+      - TRUSTED_PROXYS=web
+      - OVERWRITEPROTOCOL=http
+      - OVERWRITECLIURL=http://localhost:8080
+      - CI_TRUSTED_DOMAINS=localhost
+      - CI_ALLOW_LOCAL_REMOTE_SERVERS=true
+      - CI_DATADIRECTORY=/data
+
   # Nextcloud App Cron
-  app_cron:  
-    image: craftingit/nextcloud-cron:dev
-    container_name: nextcloud_app_cron
+  app_cron:
+    image: craftingit/nextcloud-cron:latest
+    build:
+      context: ../Container/NextcloudCron
+      dockerfile: Dockerfile
     environment:
       - CRON=1
       - FULLTEXT=1
       - PREVIEW=1
-    links:
+   # Same as app
+      - REDIS_HOST=redis
+      - REDIS_HOST_PASSWORD=nextcloud
+      - PHP_MEMORY_LIMIT=1G
+      - PHP_UPLOAD_LIMIT=16G
+      - POSTGRES_DB=nextcloud
+      - POSTGRES_USER=nextcloud
+      - POSTGRES_PASSWORD=nextcloud
+      - POSTGRES_HOST=db
+      - TRUSTED_PROXYS=web
+      - OVERWRITEPROTOCOL=http
+      - OVERWRITECLIURL=http://localhost:8080
+      - CI_TRUSTED_DOMAINS=localhost
+      - CI_ALLOW_LOCAL_REMOTE_SERVERS=true
+      - CI_DATADIRECTORY=/data
+    depends_on:
       - db
+      - redis
     volumes:
-      - ./html:/var/www/html
+      - ./data:/data
+      - ./custom_apps:/var/www/html/custom_apps
     restart: always
     networks:
       - nextcloudData
       - nextcloudFullText
       - nextcloudOffice
-  #Onlyoffice
+  
+  # Notify_push for real-time notifications
+  notify_push:
+    image: craftingit/nextcloud-notify-push:latest
+    build:
+      context: ../Container/NextcloudNotifyPush
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - app
+      - db
+      - redis
+    environment:
+      - NEXTCLOUD_URL=http://web
+      - DATABASE_URL=postgres://nextcloud:nextcloud@db/nextcloud
+      - REDIS_URL=redis://redis:6379?password=nextcloud
+      - LOG_LEVEL=info
+      - ALLOW_SELF_SIGNED=true
+    ports:
+      - "7867:7867"
+    networks:
+      - nextcloudData
+  
+  # COTURN server for Nextcloud Talk
+  coturn:
+    image: coturn/coturn
+    container_name: nextcloud_coturn
+    restart: unless-stopped
+    ports:
+      - "3478:3478/tcp"
+      - "3478:3478/udp"
+      - "5349:5349/tcp"
+      - "5349:5349/udp"
+      - "49160-49200:49160-49200/udp"
+    command:
+      - "-n"
+      - "--lt-cred-mech"
+      - "--fingerprint"
+      - "--realm=nextcloud"
+      - "--use-auth-secret"
+      - "--static-auth-secret=nextcloud-secret-key"
+      - "--log-file=stdout"
+      - "--external-ip=$(detect-external-ip)"
+    networks:
+      - nextcloudOffice
+
+  # OnlyOffice (optional - commented out by default)
   #document-server:
   #  container_name: nextcloud_document-server
   #  image: onlyoffice/documentserver:latest
@@ -71,10 +179,8 @@ services:
   #    - ./document_data:/var/www/onlyoffice/Data
   #    - ./document_log:/var/log/onlyoffice
 
+# Networks
 networks:
   nextcloudData:
   nextcloudOffice:
   nextcloudFullText:
-
-
-      

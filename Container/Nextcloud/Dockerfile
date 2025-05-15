@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && apt upgrade -y \
   && rm -rf /var/lib/apt/lists/* 
 
+COPY ci.custom.config.php /usr/src/nextcloud/config/ci.custom.config.php
+
 COPY entrypointModUser.sh /entrypointModUser.sh
 RUN chmod +x /entrypointModUser.sh
 

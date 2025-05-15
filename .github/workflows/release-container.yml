@@ -12,6 +12,9 @@ jobs:
                 dockerfile: 
                   - {file: 'Container/Nextcloud/Dockerfile', image: 'craftingit/nextcloud', context: 'Container/Nextcloud'}
                   - {file: 'Container/NextcloudCron/Dockerfile', image: 'craftingit/nextcloud-cron', context: 'Container/NextcloudCron'}
+                  - {file: 'Container/NextcloudFPM/Dockerfile', image: 'craftingit/nextcloud-fpm', context: 'Container/NextcloudFPM'}
+                  - {file: 'Container/NextcloudNginx/Dockerfile', image: 'craftingit/nextcloud-nginx', context: 'Container/NextcloudNginx'}
+                  - {file: 'Container/NextcloudNotifyPush/Dockerfile', image: 'craftingit/nextcloud-notify-push', context: 'Container/NextcloudNotifyPush'}
         steps:
             - name: Check out repository
               uses: actions/checkout@v4

@@ -1,2 +1,6 @@
 
 .DS_Store
+
+Config/db/*
+Config/data/*
+Config/custom_apps/*
