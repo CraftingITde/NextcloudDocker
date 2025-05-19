@@ -1,4 +1,4 @@
-FROM nextcloud:31.0.4-fpm AS base
+FROM nextcloud:31.0.5-fpm AS base
 
 FROM nginx:1.28.0-alpine
 LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
