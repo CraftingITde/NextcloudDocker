@@ -1,4 +1,4 @@
-FROM nextcloud:31.0.7-fpm
+FROM nextcloud:31.0.8-fpm
 LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
