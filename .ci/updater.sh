@@ -25,6 +25,14 @@ echo "  LatestLocal:   ${LATEST_CURRENT_VERSION}"
 echo "  Current:       ${CURRENT_VERSION}"
 echo "  Repo:          ${REPO_ADRESS}"
 
+# Check if Docker tag exists
+echo "Checking if Docker tag nextcloud:${LATEST_VERSION}-fpm exists..."
+if ! docker manifest inspect nextcloud:${LATEST_VERSION}-fpm &> /dev/null; then
+    echo "ERROR: Docker tag nextcloud:${LATEST_VERSION}-fpm is not available!"
+    exit 1
+fi
+echo "Docker tag nextcloud:${LATEST_VERSION}-fpm is available."
+
 sed -i "s/FROM nextcloud:${CURRENT_VERSION}-apache/FROM nextcloud:${LATEST_VERSION}-apache/g" Container/Nextcloud/Dockerfile
 sed -i "s/FROM nextcloud:${CURRENT_VERSION}-fpm/FROM nextcloud:${LATEST_VERSION}-fpm/g" Container/NextcloudCron/Dockerfile
 sed -i "s/FROM nextcloud:${CURRENT_VERSION}-fpm/FROM nextcloud:${LATEST_VERSION}-fpm/g" Container/NextcloudNginx/Dockerfile

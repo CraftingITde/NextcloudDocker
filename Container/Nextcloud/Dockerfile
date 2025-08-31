@@ -3,7 +3,7 @@ LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     smbclient \
-    libmagickcore-6.q16-6-extra \
+    libmagickcore-7.q16hdri-10-extra \
     sudo \
     nano \  
   && apt upgrade -y \
