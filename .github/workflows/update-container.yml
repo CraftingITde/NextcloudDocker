@@ -7,7 +7,10 @@ on:
 jobs:
   update-dockerfile:
     runs-on: ubuntu-latest
-    container: craftingit/ci-tools-docker:0.0.1
+    container: 
+      image: craftingit/ci-tools-docker:0.0.2
+      options: --privileged -v /var/run/docker.sock:/var/run/docker.sock
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4 
