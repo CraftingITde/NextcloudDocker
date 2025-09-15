@@ -43,6 +43,9 @@ services:
     depends_on:
       - app
       - notify_push
+    environment:
+      - NEXTCLOUD_FPM_HOST=app
+      - NEXTCLOUD_NOTIFY_PUSH_HOST=notify_push
     networks:
       - nextcloudData
       - nextcloudFullText
