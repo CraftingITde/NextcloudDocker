@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# Configure Redis session handling with environment variables
+if [ ! -z "${REDIS_HOST}" ]; then
+    echo "Configuring Redis session handling with host: ${REDIS_HOST}"
+    {
+        echo 'session.save_handler = redis'
+        echo "session.save_path = \"tcp://${REDIS_HOST}:6379?database=0\""
+        echo 'redis.session.locking_enabled = 1'
+        echo 'redis.session.lock_retries = -1'
+        echo 'redis.session.lock_wait_time = 10000'
+        echo 'session.gc_maxlifetime = 86400'
+    } > /usr/local/etc/php/conf.d/redis-session.ini
+fi
+
 if [ ! -z "${USER_ID}" ]; then
     echo User: $USER_ID
     usermod -u $USER_ID www-data

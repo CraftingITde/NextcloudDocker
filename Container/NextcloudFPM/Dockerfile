@@ -62,16 +62,6 @@ RUN { \
         echo 'apc.serializer=igbinary'; \
     } >> /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini
 
-# Session handling via Redis (prepare for Redis configuration)
-RUN { \
-        echo 'session.save_handler = redis'; \
-        echo 'session.save_path = "tcp://${REDIS_HOST}:6379?database=0'; \
-        echo 'redis.session.locking_enabled = 1'; \
-        echo 'redis.session.lock_retries = -1'; \
-        echo 'redis.session.lock_wait_time = 10000'; \
-        echo 'session.gc_maxlifetime = 86400'; \
-    } > /usr/local/etc/php/conf.d/redis-session.ini
-
 # Add user management script
 COPY entrypointModUser.sh /entrypointModUser.sh
 RUN chmod +x /entrypointModUser.sh
