@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libmemcached11 \
     zlib1g-dev \
     libicu-dev \
+    ghostscript \
   && apt upgrade -y \
   && rm -rf /var/lib/apt/lists/*
 
