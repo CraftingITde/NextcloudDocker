@@ -1,4 +1,4 @@
-FROM nextcloud:31.0.14-fpm
+FROM nextcloud:32.0.15-fpm
 LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
 
 # Install required packages and performance extensions
