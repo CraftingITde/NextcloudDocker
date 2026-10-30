@@ -1,6 +1,6 @@
-FROM nextcloud:32.0.15-fpm AS base
+FROM nextcloud:33.0.10-fpm AS base
 
-FROM nginx:1.29.1-alpine
+FROM nginx:1.31.8-alpine
 LABEL maintainer="Kai Struessmann <kstrusmann@craftingit.de>"
 
 ENV NEXTCLOUD_FPM_HOST=nextcloud-fpm
